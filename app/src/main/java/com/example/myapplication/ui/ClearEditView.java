@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class ClearEditView extends FrameLayout {
     private boolean resRightShow;
     private String resHint;
     private String resText;
+    private int resInputType;
     private int resHintColor = Color.parseColor("#cdcdcd");
     private int resTextColor = Color.parseColor("#333333");
     private int resEditPaddingLeft;
@@ -74,8 +76,16 @@ public class ClearEditView extends FrameLayout {
             resEditPaddingLeft = px2dip(ta.getDimension(R.styleable.ClearEditView_text_padding_left, 0));
             resEditPaddingRight = px2dip(ta.getDimension(R.styleable.ClearEditView_text_padding_right, 0));
             resEditPaddingTop = px2dip(ta.getDimension(R.styleable.ClearEditView_text_padding_top, 0));
+            if (resEditPaddingTop == 0){
+                resEditPaddingTop = 8;
+            }
             resEditPaddingBottom = px2dip(ta.getDimension(R.styleable.ClearEditView_text_padding_bottom, 0));
+            if (resEditPaddingBottom == 0){
+                resEditPaddingBottom = 8;
+            }
+            resInputType = ta.getInt(R.styleable.ClearEditView_inputType, 0);
 
+            ta.recycle();
         }
 
         // 加载布局
@@ -84,9 +94,9 @@ public class ClearEditView extends FrameLayout {
         _rightImg = findViewById(R.id.clr_right_image);
         _editText = findViewById(R.id.clr_edit_text);
 
-
         // 设置整个view的背景
         view.setBackgroundResource(resBackground);
+
         // 左侧图标样式
         if (resLeftShow) {
             _leftImg.setVisibility(VISIBLE);
@@ -98,6 +108,7 @@ public class ClearEditView extends FrameLayout {
             _leftImg.setPadding(imgPaddingVal, imgPaddingVal, imgPaddingVal, imgPaddingVal);
         } else {
             _leftImg.setVisibility(GONE);
+
         }
         // 右侧图标样式
         if (resRightShow) {
@@ -110,6 +121,7 @@ public class ClearEditView extends FrameLayout {
             _rightImg.setPadding(imgPaddingVal, imgPaddingVal, imgPaddingVal, imgPaddingVal);
         } else {
             _rightImg.setVisibility(GONE);
+
         }
 
         // edit的padding
@@ -122,6 +134,18 @@ public class ClearEditView extends FrameLayout {
         // 设置hint
         _editText.setHint(resHint);
         _editText.setHintTextColor(resHintColor);
+        // 设置输入类型
+        if(resInputType==1){ //textPassword
+            _editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        } else if (resInputType==2){    //number
+            _editText.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_VARIATION_NORMAL);
+        } else if (resInputType==3){    //numberPassword
+            _editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        } else if (resInputType==4){    //numberDecimal
+            _editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        } else {    //text
+            _editText.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_NORMAL);
+        }
 
 
         // 点击清除按钮
@@ -153,12 +177,10 @@ public class ClearEditView extends FrameLayout {
         _editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override

@@ -1,3 +1,42 @@
+# 自定义EditText
+- 可自定义左侧图标，右删除图标
+
+### 自定义属性
+```
+	<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ClearEditView">
+        <attr name="background" format="reference" />              <!--背景-->
+        <attr name="left_drawable" format="reference" />            <!--左侧图标-->
+        <attr name="right_drawable" format="reference" />           <!--右侧图标-->
+        <attr name="left_show" format="boolean" />                  <!--是否显示左侧图标-->
+        <attr name="right_show" format="boolean" />                 <!--是否显示右侧图标-->
+        <attr name="text" format="string" />                        <!--设置文字内容-->
+        <attr name="text_size" format="dimension|integer" />        <!--文字大小-->
+        <attr name="text_color" format="color" />                   <!--文字颜色-->
+        <attr name="hint" format="string" />                        <!--hint内容-->
+        <attr name="hint_color" format="color" />                   <!--hint颜色-->
+        <attr name="text_padding_left" format="dimension|integer" />    <!--editText中padding left 值-->
+        <attr name="text_padding_right" format="dimension|integer" />   <!--editText中padding right 值-->
+        <attr name="text_padding_top" format="dimension|integer" />     <!--editText中padding top 值-->
+        <attr name="text_padding_bottom" format="dimension|integer" />  <!--editText中padding bottom 值-->
+        <attr name="inputType">                         <!--editText的inputType属性-->
+            <enum name="text" value="0" />
+            <enum name="textPassword" value="1" />
+            <enum name="number" value="2" />
+            <enum name="numberPassword" value="3" />
+            <enum name="numberDecimal" value="4" />
+        </attr>
+    </declare-styleable>
+</resources>
+```
+
+
+
+---
+
+### 布局案例
+```
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -80,3 +119,8 @@
 
 
 </LinearLayout>
+```
+
+---
+
+![gif](./gif/ex.gif)
