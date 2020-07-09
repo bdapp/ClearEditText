@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ClearEditView">
+        <attr name="background" format="reference" />
+        <attr name="left_drawable" format="reference" />
+        <attr name="right_drawable" format="reference" />
+        <attr name="left_show" format="boolean" />
+        <attr name="right_show" format="boolean" />
+        <attr name="text_size" format="dimension|integer" />
+        <attr name="hint" format="string" />
+        <attr name="text_color" format="color" />
+        <attr name="hint_color" format="color" />
+        <attr name="text" format="string" />
+        <attr name="text_padding_left" format="dimension|integer" />
+        <attr name="text_padding_right" format="dimension|integer" />
+        <attr name="text_padding_top" format="dimension|integer" />
+        <attr name="text_padding_bottom" format="dimension|integer" />
+
+    </declare-styleable>
+</resources>
